@@ -1,0 +1,38 @@
+\mode<presentation>
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  \fill[color=umb] (0,0) rectangle (\the\paperwidth,0.8);
+  \fill[color=umm] (0,0.8) rectangle (\the\paperwidth,0.9);
+  \node[anchor=south west, xshift=0.1cm, yshift=0.1cm] at (0,0) {\includegraphics[height=0.4cm]{/home/djfrey/code/umich-beamer-theme/block_m-hex.png}};
+  \node[anchor=south east, xshift=-0.1cm, yshift=0.1cm, text=umw] at (\the\paperwidth,0) {\fontsize{8}{10}\selectfont \insertframenumber/\inserttotalframenumber};
+  \node[anchor=south, xshift=0cm, yshift=0.1cm, text=umw] at (\the\paperwidth/2,0) {\fontsize{8}{10}\selectfont \insertshorttitle\ (\insertshortauthor,\ \insertshortdate)};
+  \end{tikzpicture}
+}
+
+% Title page
+\defbeamertemplate*{title page}{umich}[1][]
+{ 
+   \vskip6cm%
+    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,sep=8pt,#1] {title page header}
+      \usebeamerfont{title}\inserttitle\par%
+    \end{beamercolorbox}%
+    \vskip0.75cm%
+    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{author}
+      \usebeamerfont{author}\insertauthor%
+    \end{beamercolorbox}
+     \vskip0.2cm%
+    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{date}
+      \usebeamerfont{author}\insertdate%
+    \end{beamercolorbox}
+  \vfill
+}
+
+% Items
+\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
+
+\mode
+<all>
+
