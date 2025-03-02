@@ -2,31 +2,79 @@
 
 \setbeamertemplate{background}{
   \begin{tikzpicture}
-  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-  \fill[color=umb] (0,0) rectangle (\the\paperwidth,0.8);
-  \fill[color=umm] (0,0.8) rectangle (\the\paperwidth,0.9);
-  \node[anchor=south west, xshift=0.1cm, yshift=0.1cm] at (0,0) {\includegraphics[height=0.4cm]{/home/djfrey/code/umich-beamer-theme/block_m-hex.png}};
-  \node[anchor=south east, xshift=-0.1cm, yshift=0.1cm, text=umw] at (\the\paperwidth,0) {\fontsize{8}{10}\selectfont \insertframenumber/\inserttotalframenumber};
-  \node[anchor=south, xshift=0cm, yshift=0.1cm, text=umw] at (\the\paperwidth/2,0) {\fontsize{8}{10}\selectfont \insertshorttitle\ (\insertshortauthor,\ \insertshortdate)};
+  \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+  \ifnum\insertframenumber=1
+    \fill[color=umb] (0,0) rectangle (\the\paperwidth,3);
+    \fill[color=umm] (0,3) rectangle (\the\paperwidth,3.1);
+    \node[anchor=center, xshift=0cm, yshift=1.5cm] at (\the\paperwidth/2,\the\paperheight/2) {\includegraphics[height=2.5cm]{block_m-hex.png}};
+  \else
+    \fill[color=umb] (0,0) rectangle (\the\paperwidth,0.8);
+    \fill[color=umm] (0,0.8) rectangle (\the\paperwidth,0.9);
+    \node[anchor=south west, xshift=0.1cm, yshift=0.1cm] at (0,0) {\includegraphics[height=0.4cm]{block_m-hex.png}};
+    \node[anchor=south east, xshift=-0.1cm, yshift=0.1cm, text=umw] at (\the\paperwidth,0) {\fontsize{8}{10}\selectfont \insertframenumber/\inserttotalframenumber};
+    \node[anchor=south, xshift=0cm, yshift=0.1cm, text=umw] at (\the\paperwidth/2,0) {\fontsize{8}{10}\selectfont \insertshorttitle\ (\insertshortauthor,\ \insertshortdate)};
+    \vspace{-2cm} % Adjust this value to move the content up or down
+  \fi
   \end{tikzpicture}
 }
 
 % Title page
 \defbeamertemplate*{title page}{umich}[1][]
-{ 
-   \vskip6cm%
-    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,sep=8pt,#1] {title page header}
-      \usebeamerfont{title}\inserttitle\par%
-    \end{beamercolorbox}%
-    \vskip0.75cm%
-    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{author}
-      \usebeamerfont{author}\insertauthor%
-    \end{beamercolorbox}
-     \vskip0.2cm%
-    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{date}
-      \usebeamerfont{author}\insertdate%
-    \end{beamercolorbox}
+{
+  \vskip5cm%
+  \begin{beamercolorbox}[wd=12cm,center,#1] {title page header}
+   \usebeamerfont{title}\inserttitle\par%
+   \end{beamercolorbox}%
+   \vskip1cm%
+   \begin{beamercolorbox}[wd=12cm,center,#1]{author}
+    \usebeamerfont{author}\insertauthor%
+   \end{beamercolorbox}
+    \vskip0.2cm%
+   \begin{beamercolorbox}[wd=12cm,center,#1]{date}
+    \usebeamerfont{author}\insertdate%
+   \end{beamercolorbox}
   \vfill
+}
+
+% Table of contents slide
+\defbeamertemplate*{section in toc}{umich}
+{
+  \leavevmode\leftskip=2em%
+  \usebeamerfont*{section number projected}%
+  \usebeamercolor{section number projected}%
+  \begin{pgfpicture}{0pt}{0pt}{0pt}{0pt}
+    \color{fg}
+    \pgftext[base]{\inserttocsectionnumber}
+  \end{pgfpicture}%
+  \hskip1em\inserttocsection\par
+}
+
+\defbeamertemplate*{subsection in toc}{umich}
+{
+  \leavevmode\leftskip=4em%
+  \usebeamerfont*{subsection number projected}%
+  \usebeamercolor{subsection number projected}%
+  \begin{pgfpicture}{0pt}{0pt}{0pt}{0pt}
+    \color{fg}
+    \pgftext[base]{\inserttocsubsectionnumber}
+  \end{pgfpicture}%
+  \hskip1em\inserttocsubsection\par
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
 }
 
 % Items

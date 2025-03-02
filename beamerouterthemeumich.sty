@@ -3,18 +3,17 @@
 % Frame title
 \defbeamertemplate*{frametitle}{texsx}[1][]
 {
-\vskip1cm%
-  \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
+\vskip0.25cm%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.7cm]{frametitle} 
   \begin{tikzpicture}
-  \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,1.2);
-  \fill[orange] (0,2) rectangle(2.95,1.2);
-  \fill[blue!50!cyan!80] (3.05,0) rectangle(\the\paperwidth,1.2);
-   \ifx\insertframesubtitle\@empty%
-      {\node[anchor=west, white,font=\large] at (3.2,0.61){\insertframetitle};}
-      \else%
-      {\node[anchor= west, white,font=\large] at (3.2,0.81){\insertframetitle};%
-       \node[anchor= west, white,font=\small] at (3.2,0.41){\insertframesubtitle};}%
-      \fi
+  \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,1.6);
+  \ifx\insertframesubtitle\@empty%
+    {\node[anchor=west,pb,font=\huge] at (0.3,0.7){\insertframetitle};}
+  \else%
+    {\node[anchor= west,pb,font=\huge] at (0.3,1.1){\insertframetitle};%
+      \node[anchor= west,lqs,font=\large] at (0.3,0.5){\insertframesubtitle};}%
+  \fi
+  \fill[color=umm] (0,0) rectangle (\the\paperwidth/1.1,0.05);
   \end{tikzpicture}
   \end{beamercolorbox}
 }
